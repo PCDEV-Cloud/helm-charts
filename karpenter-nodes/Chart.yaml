@@ -1,0 +1,17 @@
+apiVersion: v2
+name: karpenter-nodes
+description: A Helm chart for managing Karpenter NodePools and NodeClasses
+type: application
+version: 1.0.4
+appVersion: 1.0.4
+keywords:
+  - karpenter
+  - eks
+  - cluster
+  - node
+  - scheduler
+  - autoscaling
+  - lifecycle
+maintainers:
+  - name: pcdev
+    url: https://github.com/PCDEV-Cloud
