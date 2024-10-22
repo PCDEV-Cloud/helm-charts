@@ -1,26 +1,12 @@
-{{- range $ncName, $ncData:= .Values.nodeClasses }}
+{{- range $ncName, $ncData := .Values.nodeClasses }}
 ---
 apiVersion: karpenter.k8s.aws/v1beta1
 kind: EC2NodeClass
 metadata:
-  {{- with $ncData.additionalAnnotations }}
-  annotations:
-    {{- range $key, $value := . }}
-    {{ $key }}: {{ $value | quote }}
-    {{- end }}
-  {{- end }}
-  {{- with $ncData.additionalLabels }}
-  labels:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
   name: {{ $ncName | quote }}
 spec:
-  {{- with $ncData.kubelet }}
-  kubelet:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
   {{- with $ncData.amiFamily }}
-  amiFamily: {{ . }}
+  amiFamily: {{ . | default "AL2" }}
   {{- end }}
   {{- with required "subnetSelectorTerms is required" $ncData.subnetSelectorTerms }}
   subnetSelectorTerms:
