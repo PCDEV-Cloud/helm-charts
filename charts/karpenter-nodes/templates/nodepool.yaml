@@ -20,7 +20,7 @@ spec:
     metadata:
       {{- toYaml . | nindent 6 }}
     {{- end }}
-    {{- with $npData.template.metadata }}
+    {{- with $npData.template.spec }}
     spec:
       {{- toYaml . | nindent 6 }}
     {{- end }}
